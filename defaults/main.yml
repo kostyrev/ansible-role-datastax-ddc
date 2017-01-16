@@ -1,3 +1,6 @@
 ---
 # defaults file for kostyrevaa.datastax-ddc
 datastax_ddc_version: 3.9
+datastax_ddc_cassandra_user: cassandra
+datastax_ddc_cassandra_group: "{{ datastax_ddc_cassandra_user }}"
+datastax_ddc_cassandra_conf_dir_mode: '0755'

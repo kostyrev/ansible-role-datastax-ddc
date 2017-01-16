@@ -19,6 +19,14 @@
     - datastax-ddc
     - jemalloc
 
+- name: Fix directory permissions
+  file:
+    path: /etc/cassandra/default.conf
+    owner: "{{ datastax_ddc_cassandra_user }}"
+    group: "{{ datastax_ddc_cassandra_group }}"
+    mode: "{{ datastax_ddc_cassandra_conf_dir_mode }}"
+    recurse: yes
+    state: directory
 
 - name: enable cassandra service
   service:
