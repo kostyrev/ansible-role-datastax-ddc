@@ -32,3 +32,9 @@
   service:
     name: cassandra
     enabled: yes
+
+- name: start cassandra service
+  service:
+    name: cassandra
+    state: started
+  when: datastax_ddc_manage_cassandra_service
