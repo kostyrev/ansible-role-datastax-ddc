@@ -1,0 +1,11 @@
+---
+
+- name: Cassandra | Add the datastax repository apt-key
+  apt_key:
+    url: "http://debian.datastax.com/debian/repo_key"
+    state: present
+
+- name: Cassandra | Add the datastax repository
+  apt_repository:
+    repo: "deb http://debian.datastax.com/datastax-ddc {{ datastax_ddc_version }} main"
+    state: present

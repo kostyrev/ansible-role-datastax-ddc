@@ -1,4 +1,35 @@
 ---
+
 - hosts: all
+  pre_tasks:
+
+    - name: install initscripts
+      package:
+        name: initscripts
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: installing repo for Java 8 in Ubuntu 14.04
+      apt_repository:
+        repo: 'ppa:openjdk-r/ppa'
+        validate_certs: no
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_version|version_compare(14.04, '<=')
+
   roles:
+
+    - role: geerlingguy.java
+      when: ansible_os_family == 'RedHat'
+      java_packages:
+        - java-1.8.0-openjdk
+
+    - role: geerlingguy.java
+      when: ansible_distribution == 'Ubuntu'
+      java_packages:
+        - openjdk-8-jdk
+
+    - role: kostyrevaa.epel
+      when: ansible_os_family == 'RedHat'
+
     - role: kostyrevaa.datastax-ddc

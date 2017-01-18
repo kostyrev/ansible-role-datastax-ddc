@@ -1,27 +1,20 @@
 ---
 # tasks file for kostyrevaa.datastax-ddc
 
-- name: import Datastax repo key
-  rpm_key:
-    state: present
-    key: http://rpm.datastax.com/rpm/repo_key
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Add Datastax repository
-  yum_repository:
-    name: "datastax-ddc-{{ datastax_ddc_version }}"
-    description: "datastax ddc {{ datastax_ddc_version }}"
-    baseurl: "http://rpm.datastax.com/datastax-ddc/{{ datastax_ddc_version }}"
-    enabled: yes
+- include: "install-{{ ansible_os_family }}.yml"
 
 - name: Install packages
-  package: name={{ item }}
-  with_items:
-    - datastax-ddc
-    - jemalloc
+  package:
+    name: "{{ item }}"
+  with_items: "{{ datastax_ddc_packages }}"
+
 
 - name: Fix directory permissions
   file:
-    path: /etc/cassandra/default.conf
+    path: "{{ datastax_ddc_conf_dir }}"
     owner: "{{ datastax_ddc_cassandra_user }}"
     group: "{{ datastax_ddc_cassandra_group }}"
     mode: "{{ datastax_ddc_cassandra_conf_dir_mode }}"

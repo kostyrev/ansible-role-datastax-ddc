@@ -1,0 +1,7 @@
+---
+
+datastax_ddc_packages:
+  - datastax-ddc
+  - jemalloc
+
+datastax_ddc_conf_dir: /etc/cassandra/default.conf
