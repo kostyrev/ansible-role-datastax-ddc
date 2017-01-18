@@ -9,3 +9,9 @@
   apt_repository:
     repo: "deb http://debian.datastax.com/datastax-ddc {{ datastax_ddc_version }} main"
     state: present
+
+- name: prevent daemons from starting after installing a package
+  copy:
+    dest: /usr/sbin/policy-rc.d
+    mode: '0755'
+    content: "#!/bin/sh\nexit 101\n"
