@@ -24,7 +24,7 @@
 - name: enable cassandra service
   service:
     name: cassandra
-    enabled: yes
+    enabled: "{{ datastax_ddc_enable_cassandra_service }}"
 
 - name: start cassandra service
   service:

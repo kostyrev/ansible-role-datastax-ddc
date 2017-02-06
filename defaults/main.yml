@@ -4,4 +4,5 @@ datastax_ddc_version: 3.9
 datastax_ddc_cassandra_user: cassandra
 datastax_ddc_cassandra_group: "{{ datastax_ddc_cassandra_user }}"
 datastax_ddc_cassandra_conf_dir_mode: '0755'
+datastax_ddc_enable_cassandra_service: yes
 datastax_ddc_manage_cassandra_service: yes
