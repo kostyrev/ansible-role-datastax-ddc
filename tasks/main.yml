@@ -3,6 +3,8 @@
 
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - always
 
 - include: "install-{{ ansible_os_family }}.yml"
 
@@ -10,7 +12,6 @@
   package:
     name: "{{ item }}"
   with_items: "{{ datastax_ddc_packages }}"
-
 
 - name: Fix directory permissions
   file:
@@ -20,6 +21,21 @@
     mode: "{{ datastax_ddc_cassandra_conf_dir_mode }}"
     recurse: yes
     state: directory
+
+- name: Update the cassandra configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ datastax_ddc_conf_dir }}/{{item}}"
+    owner: "{{ datastax_ddc_cassandra_user }}"
+    group: "{{ datastax_ddc_cassandra_group }}"
+    mode: "{{ datastax_ddc_cassandra_conf_dir_mode }}"
+  with_items:
+    - "cassandra.yaml"
+  notify:
+    - restart cassandra
+  tags:
+    - cassandra-config
+    - config
 
 - name: enable cassandra service
   service:

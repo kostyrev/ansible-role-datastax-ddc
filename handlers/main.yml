@@ -1,2 +1,7 @@
 ---
 # handlers file for kostyrevaa.datastax-ddc
+- name: restart cassandra
+  service:
+    name: cassandra
+    state: restarted
+  when: datastax_ddc_manage_cassandra_service
