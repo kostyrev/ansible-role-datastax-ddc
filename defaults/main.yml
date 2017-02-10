@@ -22,6 +22,6 @@ cassandra_cas_contention_timeout_in_ms: 1000
 cassandra_truncate_request_timeout_in_ms: 60000
 cassandra_request_timeout_in_ms: 10000
 cassandra_endpoint_snitch: SimpleSnitch
-cassandra_seeds: '"127.0.0.1"'
+cassandra_seeds: 127.0.0.1
 cassandra_listen_address: localhost
 cassandra_rpc_address: "{{ cassandra_listen_address }}"
