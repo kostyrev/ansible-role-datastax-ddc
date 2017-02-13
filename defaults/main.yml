@@ -8,6 +8,7 @@ datastax_ddc_enable_cassandra_service: yes
 datastax_ddc_manage_cassandra_service: yes
 
 cassandra_cluster_name: 'Test Cluster'
+cassandra_authenticator: 'AllowAllAuthenticator'
 cassandra_concurrent_reads: 32
 cassandra_concurrent_writes: 32
 cassandra_concurrent_counter_writes: 32
