@@ -1,10 +1,7 @@
 ---
 # tasks file for kostyrevaa.datastax-ddc
 
-- name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
-  tags:
-    - always
+- include: vars.yml
 
 - include: "install-{{ ansible_os_family }}.yml"
 
