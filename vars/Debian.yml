@@ -5,3 +5,5 @@ datastax_ddc_packages:
   - libjemalloc1
 
 datastax_ddc_conf_dir: /etc/cassandra
+
+cassandra_log_name: system.log

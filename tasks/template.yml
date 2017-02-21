@@ -9,6 +9,7 @@
     - "cassandra.yaml"
   notify:
     - restart cassandra
+    - wait_for cassandra
   tags:
     - cassandra-config
     - config
