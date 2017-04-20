@@ -1,0 +1,24 @@
+---
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
+
+install:
+- pip install ansible==2.3.0.0
+- pip install ansible-lint
+- pip install docker
+- pip install molecule==1.23.0
+
+script:
+- cd ../ && mv ansible-role-datastax-ddc kostyrev.datastax-ddc && cd kostyrev.datastax-ddc
+- molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
