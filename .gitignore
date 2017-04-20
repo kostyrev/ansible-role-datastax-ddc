@@ -1,3 +1,4 @@
 .molecule
 __pycache__
 *.pyc
+meta/.galaxy_install_info
