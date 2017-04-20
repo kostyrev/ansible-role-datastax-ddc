@@ -1,0 +1,28 @@
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  sha: v0.7.1
+  hooks:
+    - id: trailing-whitespace
+      name: Trim Trailing Whitespace
+      description: This hook trims trailing whitespace.
+      entry: trailing-whitespace-fixer
+      language: python
+      files: \.(js|rb|md|py|sh|txt|yaml|yml)$
+    - id: end-of-file-fixer
+    - id: check-json
+    - id: check-yaml
+    - id: check-symlinks
+    - id: detect-aws-credentials
+    - id: check-added-large-files
+    - id: detect-private-key
+
+- repo: https://github.com/willthames/ansible-lint.git
+  sha: v3.4.12
+  hooks:
+    - id: ansible-lint
+      files: \.(yaml|yml)$
+      args: [
+        "--exclude=roles",
+        "--exclude=basic/roles",
+        "--exclude=.travis.yml",
+        "--exclude=templates/cassandra.yaml.j2"
+      ]
