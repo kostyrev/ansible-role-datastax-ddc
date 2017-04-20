@@ -26,6 +26,10 @@
     name: cassandra
     enabled: "{{ datastax_ddc_enable_cassandra_service }}"
 
+# Flush handlers now, so we avoid starting the process and then
+# restarting it immediately after notifications are flushed.
+- meta: flush_handlers
+
 - name: start cassandra service
   service:
     name: cassandra
