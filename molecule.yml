@@ -1,13 +1,4 @@
 ---
-
-molecule:
-  test:
-    sequence:
-      - destroy
-      - syntax
-      - create
-      - converge
-
 dependency:
   name: galaxy
   requirements_file: requirements.yml
@@ -16,10 +7,8 @@ dependency:
 
 driver:
   name: docker
-
 docker:
   containers:
-
     - name: centos-6-cassandra
       image: centos
       image_version: 6
