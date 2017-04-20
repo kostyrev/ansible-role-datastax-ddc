@@ -9,5 +9,5 @@
 - name: wait_for cassandra
   wait_for:
     path: "/var/log/cassandra/{{ cassandra_log_name }}"
-    search_regex: 'No gossip backlog'
+    search_regex: 'state jump to NORMAL'
   when: datastax_ddc_manage_cassandra_service
