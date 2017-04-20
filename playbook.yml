@@ -32,4 +32,4 @@
     - role: kostyrevaa.epel
       when: ansible_os_family == 'RedHat'
 
-    - role: kostyrevaa.datastax-ddc
+    - role: kostyrev.datastax-ddc
